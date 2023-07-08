@@ -1,3 +1,17 @@
+::-webkit-scrollbar{
+	width: .7em;
+}
+
+::-webkit-scrollbar-track{
+	background: hsl(0 0% 100%/ 1);
+}
+
+::-webkit-scrollbar-thumb {
+	background: hsl(197 71% 73%/ 1);
+}
+::-webkit-scrollbar-thumb:hover {
+	background: hsl(197 80% 33%/ .4);
+}
 *{
     margin:0;
     padding: 0;
