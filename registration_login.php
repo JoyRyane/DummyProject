@@ -31,11 +31,20 @@
             if($user){
                 if(password_verify($Password, $user["Password"])){
                     if($user["Role"] == 'Insurance Company'){
+                        session_start();
+                        $_SESSION["user"]="Yes";
                         header("location:insuranceCompany.php");
                         die();
+
                     }elseif($user["Role"] == 'Ministry of Transport'){
-                        header("location:ministryofTransport.php.php");
+                        session_start();
+                        $_SESSION["user"]="MOT";
+                        header("location:ministryofTransport.php");
                         die();
+
+                        if(isset($_SESSION["user"])){
+                            header("location:ministryofTransport.php");
+                        }
                     }elseif($user["Role" == 'Technical Visit']){
                         header("location:technicalVisit.php");
                         die();
@@ -50,6 +59,9 @@
     ?>
 
 <?php
+
+        
+
     if(isset($_POST["register"])){
         $Name = $_POST["Name"];
         $Email = $_POST["Email"];

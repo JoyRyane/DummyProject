@@ -1,10 +1,16 @@
+<?php
+    session_start();
+    if(!isset($_SESSION["user"])){
+        header("location:registration_login.php");
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta bane="viewport" content="width=device-width,initial-scale=1.0">
-    <link href="ministryofTransport.css" rel="stylesheet">
+    <link rel="stylesheet" href="ministryofTransport.css" >
 	<title>Register/Login</title>
 </head>
 <body>
@@ -79,6 +85,10 @@
 						<input type="date" name="Expirydate" required>	
 					</div>
 					<input type="submit" name="register" class="btn" value="Register">
+                    <div class="logout" style="text-align:end;margin-top:15px;">
+					    <a href="admin_logout.php" class="logout-link" style="text-decoration:none;
+                        color:white;">Log Out</a>
+				    </div>
 				</form>
 		</div>
     </div>

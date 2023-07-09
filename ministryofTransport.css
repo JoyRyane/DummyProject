@@ -69,7 +69,7 @@ body{
 .wrapper{
     position:relative;
     width:400px;
-    height:600px;
+    height:640px;
     top: 50px;
     background: transparent;
     border:2px solid rgba(255,255,255, 0.5);
@@ -140,4 +140,16 @@ body{
     font-size: 1em;
     color:#fff;
     font-weight: 500;
+    
+}
+.logout{
+    text-align:end;
+    margin-top:15px;
+}
+.logout a{
+    text-decoration: none;
+    color:white;
+}
+.logout a:hover{
+    text-decoration: underline;
 }
