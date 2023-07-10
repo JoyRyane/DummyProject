@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta bane="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="technicalVisit.css" >
+    <link rel="stylesheet" href="vehicleInsurance.css" >
 	<title>Register/Login</title>
 </head>
 <body>
@@ -54,7 +54,7 @@
                     }
                 }else{
                     require_once("admin_connect.php");
-                    $sql = "INSERT INTO technicalvisit(Owner,Dealer,Email,carReg,Details,Issuedate,Expirydate) values(?,?,?,?,?,?,?)";
+                    $sql = "INSERT INTO vehicleInsurance(Owner,Dealer,Email,carReg,Details,Issuedate,Expirydate) values(?,?,?,?,?,?,?)";
                     $stmt = mysqli_stmt_init($conn);
                     $prepare = mysqli_stmt_prepare($stmt,$sql);
                     if($prepare){
@@ -68,8 +68,8 @@
             }
         ?>
         <div class="form-box register">
-				<h2>Technical Visit</h2>
-				<form action="technicalVisit.php" method="post">
+				<h2>Vehicle Insurance</h2>
+				<form action="vehicleInsurance.php" method="post">
 					<div class="input-box">
 						<input type="text" name="Owner">
 						<label>Name of car owner</label>

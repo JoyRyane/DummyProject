@@ -32,20 +32,17 @@
                 if(password_verify($Password, $user["Password"])){
                     if($user["Role"] == 'Insurance Company'){
                         session_start();
-                        $_SESSION["user"]="Yes";
-                        header("location:insuranceCompany.php");
-                        die();
-
+                        $_SESSION["user"]="MOT";
+                        if(isset($_SESSION["access"])){
+                            header("location:insuranceCompany.php");
+                        }
                     }elseif($user["Role"] == 'Ministry of Transport'){
                         session_start();
-                        $_SESSION["user"]="MOT";
-                        header("location:ministryofTransport.php");
-                        die();
-
+                        $_SESSION["user"]="MOT";                       
                         if(isset($_SESSION["user"])){
                             header("location:ministryofTransport.php");
                         }
-                    }elseif($user["Role" == 'Technical Visit']){
+                    }elseif($user["Role"] == 'Technical Visit'){
                         header("location:technicalVisit.php");
                         die();
                     }
@@ -102,10 +99,10 @@
                         header("location:insuranceCompany.php");
                         die();
                     }elseif($user["Role"] == 'Ministry of Transport'){
-                        header("location:ministryofTransport.php.php");
+                        header("location:ministryofTransport.php");
                         die();
                     }elseif($user["Role"] == 'Technical Visit'){
-                        header("location:technicalVisit.php.php");
+                        header("location:technicalVisit.php");
                         die();
                     }
             }
