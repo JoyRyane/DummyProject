@@ -61,9 +61,6 @@ header{
 }
 body{
     display: flex;
-    background: url("pictures/road2.jpg");
-	background-position:center;
-	background-size:cover;
     align-items: center;
     justify-content: center;
     min-height: 100vh;

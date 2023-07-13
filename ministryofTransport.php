@@ -70,10 +70,12 @@
 				<h2>Gray Card Registration</h2>
 				<form action="ministryofTransport.php" method="post">
 					<div class="input-box">
+						<span class="icon"><img src="pictures/user.png" style="height:30px; width:30px;"/></span>
 						<input type="text" name="Owner">
 						<label>Name of car owner</label>
 					</div>
                     <div class="input-box">
+						<span class="icon"><img src="pictures/user.png" style="height:30px; width:30px;"/></span>
 						<input type="text" name="Dealer">
 						<label>Name of Dealer</label>
 					</div>
@@ -83,15 +85,17 @@
 						<label>Car owner's Email</label>
 					</div>
                     <div class="input-box"> 
-						<span class="icon"><img src="pictures/email.png"/></span>
+						<span class="icon"><img src="pictures/registration.png" style="width:30px;height:30px;"/></span>
 						<input type="text" name="carReg">
 						<label>Car Registration Number</label>
 					</div>
 					<div class="input-box">
 						<input type="date" name="Issuedate">
+						<label>Issued Date</label>
 					</div>
                     <div class="input-box">
 						<input type="date" name="Expirydate">	
+						<label>Expiry Date</label>
 					</div>
 					<input type="submit" name="register" class="btn" value="Register">
                     <div class="logout" style="text-align:end;margin-top:15px;">

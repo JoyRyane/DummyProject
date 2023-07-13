@@ -124,7 +124,7 @@
 						<label>Car Registration Number</label>
 					</div>
                     <div class="input-box">
-						<span class="icon"><img src="pictures/notice.jpg" style="width:30px;height:30px;"/></span>
+						<span class="icon"><img src="pictures/notice.png" style="width:30px;height:30px;"/></span>
 						<textarea rows="3" columns="45" name="Notice" class="detail" placeholder="Notice"></textarea>
                         <!--<label>Details</label>-->
 					</div>

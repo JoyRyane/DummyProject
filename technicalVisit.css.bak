@@ -61,9 +61,7 @@ header{
 }
 body{
     display: flex;
-    background: url("pictures/road2.jpg");
-	background-position:center;
-	background-size:cover;
+    background: url("pictures/highway.jpg");
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -71,7 +69,7 @@ body{
 .wrapper{
     position:relative;
     width:400px;
-    height:670px;
+    height:770px;
     top: 50px;
     background: transparent;
     border:2px solid rgba(255,255,255, 0.5);
@@ -81,6 +79,10 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.detail{
+    background: transparent;
+    width: 88%;
 }
 .wrapper .form-box{
     width: 100%;

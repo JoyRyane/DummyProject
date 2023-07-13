@@ -4,7 +4,6 @@
         header("location:registration_login.php");
     }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta bane="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="technicalVisit.css" >
-	<title>Vehicle Insurance</title>
+	<title>Technical Visit</title>
 </head>
 <body>
     <header>
@@ -31,7 +30,7 @@
 				$Dealer = $_POST["Dealer"];
 				$Email = $_POST["Email"];
                 $carReg = $_POST["carReg"];
-                $Notice = $_POST["Notice"];
+                $Details = $_POST["Details"];
 				$Issuedate = $_POST["Issuedate"];
 				$Expirydate = $_POST["Expirydate"];
 
@@ -68,7 +67,7 @@
 				
 				require_once("admin_connect.php");
 				if(!empty($Owner) AND !empty($Dealer) AND !empty($Email) AND !empty($carReg) AND !empty($Issuedate) AND !empty($Expirydate)){
-					$sql = "SELECT * FROM vehicleinsurance WHERE carReg = '$carReg'";
+					$sql = "SELECT * FROM technicalvisit WHERE carReg = '$carReg'";
 					$result = mysqli_query($conn, $sql);
 					$rowCount = mysqli_num_rows($result);
 					if($rowCount > 0){
@@ -81,28 +80,24 @@
                         echo "$error";
                     }
                 }else{
-					if(!empty($Owner) AND !empty($Dealer) AND !empty($Email) AND !empty($carReg) AND !empty($Issuedate) AND !empty($Expirydate))
-					{
-						$sql = "INSERT INTO vehicleinsurance(Owner,Dealer,Email,carReg,Notice,Issuedate,Expirydate) values(?,?,?,?,?,?,?)";
-						$stmt = mysqli_stmt_init($conn);
-						$prepare = mysqli_stmt_prepare($stmt,$sql);
-						if($prepare){
-							mysqli_stmt_bind_param($stmt,"sssssss",$Owner,$Dealer,$Email,$carReg,$Notice,$Issuedate,$Expirydate);
-							mysqli_stmt_execute($stmt);
-							echo "<div class = 'alert alert-success'>You have registered successfully</div>";
-						}else{
-							die("Something went wrong");
-						}
-					}
                     
-                    
+                    $sql = "INSERT INTO technicalvisit(Owner,Dealer,Email,carReg,Details,Issuedate,Expirydate) values(?,?,?,?,?,?,?)";
+                    $stmt = mysqli_stmt_init($conn);
+                    $prepare = mysqli_stmt_prepare($stmt,$sql);
+                    if($prepare){
+                        mysqli_stmt_bind_param($stmt,"sssssss",$Owner,$Dealer,$Email,$carReg,$Details,$Issuedate,$Expirydate);
+                        mysqli_stmt_execute($stmt);
+                        echo "<div class = 'alert alert-success'>You have registered successfully</div>";
+                    }else{
+                        die("Something went wrong");
+                    }
                 }
             }
         ?>
 	<div class="wrapper">
         <div class="form-box register">
-				<h2>Vehicle Insurance</h2>
-				<form action="vehicleinsurance.php" method="post">
+				<h2>Technical Visit</h2>
+				<form action="technicalVisit.php" method="post">
 					<div class="input-box">
 						<span class="icon"><img src="pictures/user.png" style="width:30px;"/></span>
 						<input type="text" name="Owner">
@@ -124,8 +119,7 @@
 						<label>Car Registration Number</label>
 					</div>
                     <div class="input-box">
-						<span class="icon"><img src="pictures/notice.jpg" style="width:30px;height:30px;"/></span>
-						<textarea rows="3" columns="45" name="Notice" class="detail" placeholder="Notice"></textarea>
+						<textarea rows="3" columns="45" name="Details" class="detail" placeholder="Details"></textarea>
                         <!--<label>Details</label>-->
 					</div>
 					<div class="input-box">
