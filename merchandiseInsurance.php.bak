@@ -31,6 +31,8 @@
 				$Dealer = $_POST["Dealer"];
 				$Email = $_POST["Email"];
                 $carReg = $_POST["carReg"];
+				$nature = $_POST["nature"];
+				$weight = $_POST["weight"];
                 $Notice = $_POST["Notice"];
 				$Issuedate = $_POST["Issuedate"];
 				$Expirydate = $_POST["Expirydate"];
