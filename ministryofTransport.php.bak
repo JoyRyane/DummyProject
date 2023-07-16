@@ -24,7 +24,6 @@
             </nav>
 	</header>
 
-    <div class="wrapper">
         <?php
             if(isset($_POST["register"])){
                 $Owner = $_POST["Owner"];
@@ -38,75 +37,96 @@
                 if(empty($Owner) OR empty($Dealer) OR empty($Email) OR empty($Issuedate) OR empty($Expirydate)){
                     array_push($errors,"All fields are required");
                 }
-                if(!filter_var($Email,FILTER_VALIDATE_EMAIL)){
+				if(empty($Owner)){
+					array_push($errors,"Owner required!");
+				}
+				else if(empty($Dealer)){
+					array_push($errors,"Dealer required!");
+				}
+				else if(empty($Email)){
+					array_push($errors,"Email required!");
+				}
+				else if(empty($Issuedate)){
+					array_push($errors,"Issuedate required!");
+				}
+				else if(empty($Expirydate)){
+					array_push($errors,"Expirydate required!");
+				}
+                else if(!filter_var($Email,FILTER_VALIDATE_EMAIL)){
                     array_push($errors,"Invalid email");
                 }
-                if(!preg_match("/\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{3}[A-Z]{2}\b/",$carReg)){
+                else if(!preg_match("/(\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{3}[A-Z]{2}\b)|(\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{4}[A-Z]{1}\b)/",$carReg)){
                     array_push($errors,"Invalid Registration Number");
                 }
-                if($Issuedate >= $Expirydate){
+                else if($Issuedate >= $Expirydate){
                     array_push($errors,"Invalid date");
                 }
-                if(count($errors)>0){
+                
+				require_once("admin_connect.php");
+				if(!empty($Owner) AND !empty($Dealer) AND !empty($Email) AND !empty($carReg) AND !empty($Issuedate) AND !empty($Expirydate)){
+					$sql = "SELECT * FROM ministryofTransport WHERE carReg = '$carReg'";
+					$result = mysqli_query($conn, $sql);
+					$rowCount = mysqli_num_rows($result);
+					if($rowCount > 0){
+						array_push($errors, "<b>Car registration number already inputted</b>");
+					}
+				}
+				
+				if(count($errors)>0){
                     foreach ($errors as $error){
                         echo "$error";
                     }
                 }else{
-                    require_once("admin_connect.php");
-                    $sql = "INSERT INTO car_num_entries (Owner,Dealer,Email,carReg,Issuedate,Expirydate) values(?,?,?,?,?,?)";
-                    $stmt = mysqli_stmt_init($conn);
-                    $prepare = mysqli_stmt_prepare($stmt,$sql);
-                    if($prepare){
-                        mysqli_stmt_bind_param($stmt,"ssssss",$Owner,$Dealer,$Email,$carReg,$Issuedate,$Expirydate);
-                        mysqli_stmt_execute($stmt);
-                        echo "<div class = 'alert alert-success'>You have registered successfully</div>";
-                    }else{
-                        die("Something went wrong");
-                    }
+					if(!empty($Owner) AND !empty($Dealer) AND !empty($Email) AND !empty($carReg) AND !empty($Issuedate) AND !empty($Expirydate)){
+							$sql = "INSERT INTO ministryofTransport (Owner,Dealer,Email,carReg,Issuedate,Expirydate) values(?,?,?,?,?,?)";
+							$stmt = mysqli_stmt_init($conn);
+							$prepare = mysqli_stmt_prepare($stmt,$sql);
+							if($prepare){
+								mysqli_stmt_bind_param($stmt,"ssssss",$Owner,$Dealer,$Email,$carReg,$Issuedate,$Expirydate);
+								mysqli_stmt_execute($stmt);
+								echo "<div class = 'alert alert-success'>You have registered successfully</div>";
+							}else{
+								die("Something went wrong");
+							}
+					}
                 }
             }
         ?>
+	<div class="wrapper">
         <div class="form-box register">
 				<h2>Gray Card Registration</h2>
 				<form action="ministryofTransport.php" method="post">
 					<div class="input-box">
 						<span class="icon"><img src="pictures/user.png" style="height:30px; width:30px;"/></span>
 						<input type="text" name="Owner">
-						<label>Name of car owner</label>
+						<label>Name of car owner<span style="color: red;">*</span></label>
 					</div>
                     <div class="input-box">
 						<span class="icon"><img src="pictures/user.png" style="height:30px; width:30px;"/></span>
 						<input type="text" name="Dealer">
-						<label>Name of Dealer</label>
+						<label>Name of Dealer<span style="color: red;">*</span></label>
 					</div>
 					<div class="input-box">
 						<span class="icon"><img src="pictures/email.png"/></span>
 						<input type="email" name="Email">
-						<label>Car owner's Email</label>
+						<label>Car owner's Email<span style="color: red;">*</span></label>
 					</div>
                     <div class="input-box"> 
 						<span class="icon"><img src="pictures/registration.png" style="width:30px;height:30px;"/></span>
 						<input type="text" name="carReg">
-						<label>Car Registration Number</label>
+						<label>Car Registration Number<span style="color: red;">*</span></label>
 					</div>
 					<div class="input-box">
 						<input type="date" name="Issuedate">
-						<label>Issued Date</label>
+						<label>Issued Date<span style="color: red;">*</span></label>
 					</div>
                     <div class="input-box">
 						<input type="date" name="Expirydate">	
-						<label>Expiry Date</label>
+						<label>Expiry Date<span style="color: red;">*</span></label>
 					</div>
 					<input type="submit" name="register" class="btn" value="Register">
                     <div class="logout" style="text-align:end;margin-top:15px;">
-					    <a href="admin_logout.php" class="logout-link" style="text-decoration:none;
-                        color:#fff;background:#162938;border: none;outline: none;cursor: pointer;font-size: 1em;
-						font-weight: 500;padding: 6px; border-radius: 6px;">Done</a>
-				    </div>
-					<div class="logout" style="text-align:end;margin-top:15px;">
-					    <a href="admin_logout.php" class="logout-link" style="text-decoration:none;
-                        color:#fff;background:#162938;border: none;outline: none;cursor: pointer;font-size: 1em;
-						font-weight: 500;padding: 6px; border-radius: 6px;">Done</a>
+					    <a href="admin_logout.php" class="logout-link">Done</a>
 				    </div>
 				</form>
 		</div>

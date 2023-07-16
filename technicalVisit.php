@@ -58,7 +58,7 @@
 					else if(!filter_var($Email,FILTER_VALIDATE_EMAIL)){
 						array_push($errors,"Invalid email");
 					}
-					else if(!preg_match("/\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{3}[A-Z]{2}\b/",$carReg)){
+					else if(!preg_match("/(\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{3}[A-Z]{2}\b)|(\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{4}[A-Z]{1}\b)/",$carReg)){
 						array_push($errors,"Invalid Registration Number");
 					}
 					else if($Issuedate >= $Expirydate){
@@ -101,22 +101,22 @@
 					<div class="input-box">
 						<span class="icon"><img src="pictures/user.png" style="width:30px;"/></span>
 						<input type="text" name="Owner">
-						<label>Name of car owner</label>
+						<label>Name of car owner<span style="color: red;">*</span></label>
 					</div>
                     <div class="input-box">
 						<span class="icon"><img src="pictures/user.png" style="width:30px;"/></span>
 						<input type="text" name="Dealer">
-						<label>Name of Dealer</label>
+						<label>Name of Dealer<span style="color: red;">*</span></label>
 					</div>
 					<div class="input-box">
 						<span class="icon"><img src="pictures/email.png"/></span>
 						<input type="email" name="Email">
-						<label>Car owner's Email</label>
+						<label>Car owner's Email<span style="color: red;">*</span></label>
 					</div>
                     <div class="input-box"> 
 						<span class="icon"><img src="pictures/registration.png" style="width:30px;height:30px;"/></span>
 						<input type="text" name="carReg">
-						<label>Car Registration Number</label>
+						<label>Car Registration Number<span style="color: red;">*</span></label>
 					</div>
                     <div class="input-box">
 						<span class="icon"><img src="pictures/notice.jpg" style="width:30px;height:30px;"/></span>
@@ -125,23 +125,19 @@
 					</div>
 					<div class="input-box">
 						<input type="date" name="Issuedate">
-                        <label>Issued Date</label>
+                        <label>Issued Date<span style="color: red;">*</span></label>
 					</div>
                     <div class="input-box">
 						<input type="date" name="Expirydate">
-                        <label>Expiry Date</label>	
+                        <label>Expiry Date<span style="color: red;">*</span></label>	
 					</div>
 					<input type="submit" name="register" class="btn" value="Register">
-                    <div class="logout" style="text-align:end;margin-top:15px;">
-					    <a href="admin_logout.php" class="logout-link" style="text-decoration:none;
-                        color:#fff;background:#162938;border: none;outline: none;cursor: pointer;font-size: 1em;
-						font-weight: 500;padding: 6px; border-radius: 6px;">Done</a>
+                    <div class="logout">
+					    <a href="admin_logout.php" class="logout-link">Done</a>
 				    </div>
 				</form>
 		</div>
     </div>
-
-    <script src="registration_login.js"></script>
 </body>
 
 </html>

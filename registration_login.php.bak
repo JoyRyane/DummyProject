@@ -183,7 +183,7 @@
                 </div>
                 <input type="submit" name="login" class="btn" value="Login">
                 <div class="login-register">
-                    <p>Don't have an account?<a href="#" class="register-link" style="font-weight:bold;font-size:20px;color:#fff;">Register</a></p>
+                    <p>Don't have an account?<a href="#" class="register-link" style="font-weight:bold;font-size:20px;color:#fff;"> Register</a></p>
                 </div>
             </form>
         </div>

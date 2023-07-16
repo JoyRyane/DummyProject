@@ -71,8 +71,8 @@ body{
 .wrapper{
     position:relative;
     width:400px;
-    height:770px;
-    top: 50px;
+    height:820px;
+    top: 30px;
     background: transparent;
     border:2px solid rgba(255,255,255, 0.5);
     border-radius:20px;
@@ -154,8 +154,12 @@ body{
 }
 .logout a{
     text-decoration: none;
+	background: #162938;
     color:white;
 }
 .logout a:hover{
     text-decoration: underline;
+}
+span{
+	color: red;
 }

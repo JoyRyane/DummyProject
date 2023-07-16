@@ -141,10 +141,10 @@
                 if($user["Role"] == 'Insurance Company'){
                         header("location:vehicleInsurance.html");
                         die();
-                    }elseif($user["Role"] == 'Ministry of Transport'){
+                    }else if($user["Role"] == 'Ministry of Transport'){
                         header("location:ministryofTransport.php");
                         die();
-                    }elseif($user["Role"] == 'Technical Visit'){
+                    }else if($user["Role"] == 'Technical Visit'){
                         header("location:technicalVisit.php");
                         die();
                     }

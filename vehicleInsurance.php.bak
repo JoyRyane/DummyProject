@@ -4,7 +4,6 @@
         header("location:registration_login.php");
     }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +58,7 @@
 					else if(!filter_var($Email,FILTER_VALIDATE_EMAIL)){
 						array_push($errors,"Invalid email");
 					}
-					else if(!preg_match("/\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{3}[A-Z]{2}\b/",$carReg)){
+					else if(!preg_match("/(\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{3}[A-Z]{2}\b)|(\b((AD)|(CE)|(EN)|(ES)|(LT)|(NO)|(NW)|(OU)|(SU)|(SW))[0-9]{4}[A-Z]{1}\b)/",$carReg)){
 						array_push($errors,"Invalid Registration Number");
 					}
 					else if($Issuedate >= $Expirydate){
@@ -102,7 +101,7 @@
 	<div class="wrapper">
         <div class="form-box register">
 				<h2>Vehicle Insurance</h2>
-				<form action="vehicleinsurance.php" method="post">
+				<form action="vehicleInsurance.php" method="post">
 					<div class="input-box">
 						<span class="icon"><img src="pictures/user.png" style="width:30px;"/></span>
 						<input type="text" name="Owner">
@@ -124,8 +123,8 @@
 						<label>Car Registration Number</label>
 					</div>
                     <div class="input-box">
-						<span class="icon"><img src="pictures/notice.png" style="width:30px;height:30px;"/></span>
-						<textarea rows="3" columns="45" name="Notice" class="detail" placeholder="Notice"></textarea>
+						<span class="icon"><img src="pictures/notice.jpg" style="width:30px;height:30px;"/></span>
+						<textarea rows="3" columns="45" name="Notice" class="detail" placeholder="NFurther Notes"></textarea>
                         <!--<label>Details</label>-->
 					</div>
 					<div class="input-box">
@@ -137,10 +136,8 @@
                         <label>Expiry Date</label>	
 					</div>
 					<input type="submit" name="register" class="btn" value="Register">
-                    <div class="logout" style="text-align:end;margin-top:15px;">
-					    <a href="admin_logout.php" class="logout-link" style="text-decoration:none;
-                        color:#fff;background:#162938;border: none;outline: none;cursor: pointer;font-size: 1em;
-						font-weight: 500;padding: 6px; border-radius: 6px;">Done</a>
+                    <div class="logout">
+					    <a href="admin_logout.php" class="logout-link">Done</a>
 				    </div>
 				</form>
 		</div>

@@ -154,6 +154,7 @@ body{
 }
 .logout a{
     text-decoration: none;
+	background: #162938;
     color:white;
 }
 .logout a:hover{
